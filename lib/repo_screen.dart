@@ -7,35 +7,10 @@ import 'package:github_search_async/repositories_model.dart';
 import 'package:github_search_async/repo_list_item.dart';
 
 class RepoScreen extends StatelessWidget {
-  final GlobalKey<AsyncLoaderState> asyncLoaderState =
-  new GlobalKey<AsyncLoaderState>();
+  // todo set globalKey
 
 
-  Widget getNoConnectionWidget(){
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        SizedBox(
-          height: 60.0,
-          child: new Container(
-            decoration: new BoxDecoration(
-              image: new DecorationImage(
-                image: new AssetImage('assets/no-wifi.png'),
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-        ),
-
-        new Text("No Internet Connection"),
-        new FlatButton(
-            color: Colors.red,
-            child: new Text("Retry", style: TextStyle(color: Colors.white),),
-            onPressed: () => asyncLoaderState.currentState.reloadState())
-      ],
-    );
-  }
+ //todo noConnectionMethod
 
   Widget getListView(ItemsList items){
     return new ListView.builder(
@@ -45,50 +20,19 @@ class RepoScreen extends StatelessWidget {
     );
   }
 
-  Future<Null> _handleRefresh() async {
-    asyncLoaderState.currentState.reloadState();
-    return null;
-  }
+  //todo handleRefresh method
 
   @override
   Widget build(BuildContext context) {
-    var _asyncLoader = new AsyncLoader(
-      key: asyncLoaderState,
-      initState: () async => await getRepositories(),
-      renderLoad: () => Center(child: new CircularProgressIndicator()),
-      renderError: ([error]) => getNoConnectionWidget(),
-      renderSuccess: ({data}) => getListView(data),
-    );
+    //todo setup AsyncLoader
 
     return new Scaffold(
       appBar: new AppBar(title: buildAppBarTitle('Github Repositories')),
-      body: FutureBuilder<ItemsList>(
-          future: getRepositories(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Expanded(
-                    child: Scrollbar(
-                      child: RefreshIndicator(
-                        onRefresh: () => _handleRefresh(),
-                        child: _asyncLoader
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            }
-            else{
-              return Center(child: new Container(
-                child: new Text("No data"),
-              ));
-            }
-          }),
+      body: //todo FutureBuilder
+      new Container(),
+
       floatingActionButton: new FloatingActionButton(
-        onPressed: () => _handleRefresh(),
+        onPressed: null,
         tooltip: 'Reload',
         child: new Icon(Icons.refresh),
       ),
