@@ -47,7 +47,7 @@ class RepoScreen extends StatelessWidget {
 
   Future<Null> _handleRefresh() async {
     asyncLoaderState.currentState.reloadState();
-      return null;
+    return null;
   }
 
   @override
