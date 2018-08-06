@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:github_search_async/githu_repositories_model.dart';
+import 'package:github_search_async/repositories_model.dart';
 
 class RepoListItem extends StatelessWidget{
   final Item item;

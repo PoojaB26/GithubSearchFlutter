@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 
-import 'package:github_search_async/githu_repositories_model.dart';
+import 'package:github_search_async/repositories_model.dart';
 
 
 Future<ItemsList> getRepositories() async {

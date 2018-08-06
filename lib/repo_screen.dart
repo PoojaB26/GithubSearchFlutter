@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:async_loader/async_loader.dart';
 import 'package:github_search_async/api_services.dart';
-import 'package:github_search_async/githu_repositories_model.dart';
+import 'package:github_search_async/repositories_model.dart';
 import 'package:github_search_async/repo_list_item.dart';
 
 class RepoScreen extends StatelessWidget {
