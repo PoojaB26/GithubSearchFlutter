@@ -45,22 +45,50 @@ class RepoScreen extends StatelessWidget {
     );
   }
 
+  Future<Null> _handleRefresh() async {
+    asyncLoaderState.currentState.reloadState();
+      return null;
+  }
 
   @override
   Widget build(BuildContext context) {
     var _asyncLoader = new AsyncLoader(
       key: asyncLoaderState,
       initState: () async => await getRepositories(),
-      renderLoad: () => new CircularProgressIndicator(),
+      renderLoad: () => Center(child: new CircularProgressIndicator()),
       renderError: ([error]) => getNoConnectionWidget(),
       renderSuccess: ({data}) => getListView(data),
     );
 
     return new Scaffold(
       appBar: new AppBar(title: buildAppBarTitle('Github Repositories')),
-      body: new Center(child: _asyncLoader),
+      body: FutureBuilder<ItemsList>(
+          future: getRepositories(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  Expanded(
+                    child: Scrollbar(
+                      child: RefreshIndicator(
+                        onRefresh: () => _handleRefresh(),
+                        child: _asyncLoader
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            }
+            else{
+              return Center(child: new Container(
+                child: new Text("No data"),
+              ));
+            }
+          }),
       floatingActionButton: new FloatingActionButton(
-        onPressed: () => asyncLoaderState.currentState.reloadState(),
+        onPressed: () => _handleRefresh(),
         tooltip: 'Reload',
         child: new Icon(Icons.refresh),
       ),

@@ -7,7 +7,7 @@ import 'package:github_search_async/githu_repositories_model.dart';
 
 
 Future<ItemsList> getRepositories() async {
-  final response = await http.get('https://api.github.com/search/repositories?q=flutter',
+  final response = await http.get('https://api.github.com/search/repositories',
       headers: {
         HttpHeaders.CONTENT_TYPE : 'application/json',
       },
