@@ -60,34 +60,14 @@ class RepoScreen extends StatelessWidget {
       renderSuccess: ({data}) => getListView(data),
     );
 
-    return new Scaffold(
+    return Scaffold(
       appBar: new AppBar(title: buildAppBarTitle('Github Repositories')),
-      body: FutureBuilder<ItemsList>(
-          future: getRepositories(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Expanded(
-                    child: Scrollbar(
-                      child: RefreshIndicator(
-                        onRefresh: () => _handleRefresh(),
-                        child: _asyncLoader
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            }
-            else{
-              return Center(child: new Container(
-                child: new Text("No data"),
-              ));
-            }
-          }),
-
+      body: Scrollbar(
+        child: RefreshIndicator(
+            onRefresh: () => _handleRefresh(),
+            child: _asyncLoader
+        ),
+      ),
     );
   }
 }
