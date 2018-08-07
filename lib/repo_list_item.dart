@@ -20,7 +20,7 @@ class RepoListItem extends StatelessWidget{
                 ),
               ),
 
-              new Text(item.description, style: TextStyle(
+              new Text(item.description??"", style: TextStyle(
                   color: Colors.grey,
                   fontSize: 15.0
               ),

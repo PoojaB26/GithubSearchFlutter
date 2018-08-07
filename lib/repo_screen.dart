@@ -87,11 +87,7 @@ class RepoScreen extends StatelessWidget {
               ));
             }
           }),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: () => _handleRefresh(),
-        tooltip: 'Reload',
-        child: new Icon(Icons.refresh),
-      ),
+
     );
   }
 }
