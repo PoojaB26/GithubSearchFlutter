@@ -30,12 +30,6 @@ class RepoScreen extends StatelessWidget {
       appBar: new AppBar(title: buildAppBarTitle('Github Repositories')),
       body: //todo call asyncLoader
       new Container(),
-
-      floatingActionButton: new FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Reload',
-        child: new Icon(Icons.refresh),
-      ),
     );
   }
 }
